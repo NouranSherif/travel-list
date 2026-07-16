@@ -6,10 +6,6 @@ import Form from './components/Form';
 import PackingList from './components/PackingList';
 import Status from './components/Status';
 
-const initialItems = [
-  { id: 1, description: 'Passports', quantity: 2, packed: false },
-  { id: 2, description: 'Socks', quantity: 12, packed: true },
-];
 function App() {
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('itemsList')) || [],
