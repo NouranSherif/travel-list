@@ -12,7 +12,7 @@ A React app to manage your travel packing list. Built as part of [Jonas Schmedtm
 
 ## Live Demo
 
-[View on Vercel](https://travel-list-opal-zeta.vercel.app/)
+[View on Vercel](https://travel-list-react-iota.vercel.app/)
 
 ## Getting Started
 
