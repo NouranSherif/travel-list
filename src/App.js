@@ -1,23 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
+import './index.css';
+import { useState, useEffect } from 'react';
+import Logo from './components/Logo';
+import Form from './components/Form';
+import PackingList from './components/PackingList';
+import Status from './components/Status';
 
+const initialItems = [
+  { id: 1, description: 'Passports', quantity: 2, packed: false },
+  { id: 2, description: 'Socks', quantity: 12, packed: true },
+];
 function App() {
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem('itemsList')) || [],
+  );
+
+  const handleAddItem = item => {
+    setItems([...items, item]);
+  };
+
+  const handleToggleItem = id => {
+    setItems(items =>
+      items.map(item =>
+        item.id === id ? { ...item, packed: !item.packed } : item,
+      ),
+    );
+  };
+  const handleDelete = id => {
+    setItems(items => items.filter(item => item.id !== id));
+  };
+
+  const handleClearList = () => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delet all items?',
+    );
+
+    confirmed && setItems([]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('itemsList', JSON.stringify(items));
+  }, [items]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Logo />
+      <Form onAddItem={handleAddItem} />
+      <PackingList
+        list={items}
+        handleToggleItem={handleToggleItem}
+        handleDelete={handleDelete}
+        handleClearList={handleClearList}
+      />
+      <Status items={items} />
     </div>
   );
 }
