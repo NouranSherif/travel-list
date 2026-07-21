@@ -1,6 +1,6 @@
 # Travel List
 
-A React app to manage your travel packing list. Built as part of [Jonas Schmedtmann's React Course](https://www.udemy.com/course/the-complete-react-developer-course/).
+A React app to manage your travel packing list. Built as part of **Jonas Schmedtmann's Ultimate React Course** on Udemy.
 
 ## Features
 
