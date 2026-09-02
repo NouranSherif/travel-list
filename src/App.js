@@ -7,9 +7,10 @@ import PackingList from './components/PackingList';
 import Status from './components/Status';
 
 function App() {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('itemsList')) || [],
-  );
+  const [items, setItems] = useState(() => {
+    const items = JSON.parse(localStorage.getItem('itemsList'));
+    return items || [];
+  });
 
   const handleAddItem = item => {
     setItems([...items, item]);
